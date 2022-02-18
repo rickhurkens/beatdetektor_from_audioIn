@@ -113,8 +113,8 @@
 */
 BeatDetektor = function(bpm_minimum, bpm_maximum, alt_config)
 {
-	if (typeof(bpm_minimum)=='undefined') bpm_minimum = 85.0;
-	if (typeof(bpm_maximum)=='undefined') bpm_maximum = 169.0
+	if (typeof(bpm_minimum)=='undefined') bpm_minimum = 90.0; // default: 85.0
+	if (typeof(bpm_maximum)=='undefined') bpm_maximum = 145.0 // default: 169.0
 	
 	this.config = (typeof(alt_config)!='undefined')?alt_config:BeatDetektor.config;
 	
