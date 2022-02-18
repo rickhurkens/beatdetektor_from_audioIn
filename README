@@ -1,0 +1,6 @@
+BeatDetektor_from_audioIn
+
+This project analyzes the sound from an audio input device to get the current bpm.
+The bpm is written to the browser console.
+
+Makes use of p5.js and cjcliffe's BeatDetektor BPM detection library: https://github.com/cjcliffe/beatdetektor
