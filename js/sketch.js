@@ -1,15 +1,10 @@
 function setup() {
   createCanvas(400, 400);
   getAudioContext().suspend();
-  let mySynth = new p5.MonoSynth();
 
   const startTime = (new Date).getTime() / 1000;
 
-  // This won't play until the context has resumed
-  mySynth.play('A6');
-
   // beatdetektor stuff
-
   bd_med = new BeatDetektor(85,169);
 
   vu = new BeatDetektor.modules.vis.VU();
@@ -21,7 +16,7 @@ function setup() {
   fft = new p5.FFT();
   fft.setInput(mic);
 
-  funk = function(){
+  analyzeAndProcessData = function(){
     spectrum = fft.analyze();
 
     const currentTime = (new Date).getTime() / 1000;
@@ -30,7 +25,7 @@ function setup() {
   }
 
   // analyse with 60 frames, we could maybe use requestAnimationFrame here
-  setInterval( funk, 1000/60 )
+  setInterval(analyzeAndProcessData, 1000/60)
 }
 
 function draw() {
