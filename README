@@ -1,6 +1,17 @@
-BeatDetektor_from_audioIn
+BeatDetektor_from_audioIn sending the results through socketio.
+
+----
 
 This project analyzes the sound from an audio input device to get the current bpm.
-The bpm is written to the browser console.
+The bpm is sent to the express webserver using socket.io.
 
-Makes use of p5.js and cjcliffe's BeatDetektor BPM detection library: https://github.com/cjcliffe/beatdetektor
+----
+
+Usage
+
+executing `node index.js` starts up the web server.
+Then browse to http://localhost:3000/
+
+----
+
+Makes use of cjcliffe's BeatDetektor BPM detection library: https://github.com/cjcliffe/beatdetektor
