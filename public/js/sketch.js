@@ -19,21 +19,22 @@ function setup() {
   // socket.io stuff
   const socket = io();
 
+  let previousSentSecond = -1;
+
   analyzeAndProcessData = function(){
     spectrum = fft.analyze();
 
     const currentTime = (new Date).getTime() / 1000;
-    const timer_seoncds = currentTime-startTime;
-    const winnerObject = bd_med.process(timer_seoncds, spectrum)
+    const timer_seconds = currentTime-startTime;
+    const winnerObject = bd_med.process(timer_seconds, spectrum)
 
     if (winnerObject) {
-      socket.emit('estimate', winnerObject);
+      if (Math.floor(timer_seconds) > previousSentSecond) {
+        socket.emit('estimate', winnerObject);
+        previousSentSecond = Math.floor(timer_seconds);
+      }
     }
   }
-
-  socket.on('estimate', (estimateObject) => {
-    console.log('received estimate: ', estimateObject);
-  });
 
   // analyse with 60 frames, we could maybe use requestAnimationFrame here
   setInterval(analyzeAndProcessData, 1000/60)
